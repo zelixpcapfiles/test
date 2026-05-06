@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>This Website Has Been Seized</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Serif+4:wght@400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:    #d40000;
+      --gold:   #c8a032;
+      --dark:   #0a0a0a;
+      --card:   #111111;
+      --text:   #d8d0c0;
+      --muted:  #888;
+    }
+
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'Source Serif 4', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 60px;
+      overflow-x: hidden;
+    }
+
+    /* scanline */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 1px,
+        transparent 1px, transparent 3px
+      );
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ── TOP BANNER ── */
+    .top-banner {
+      width: 100%;
+      background: var(--red);
+      border-bottom: 5px solid #7a0000;
+      padding: 13px 20px;
+      text-align: center;
+      animation: flashBg 1.8s infinite;
+    }
+    @keyframes flashBg {
+      0%,100% { background: #b80000; }
+      50%      { background: #e00000; }
+    }
+    .top-banner p {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(13px, 2.2vw, 17px);
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 0 12px rgba(255,80,80,0.9);
+    }
+
+    /* ── LOGO AREA ── */
+    .logo-area {
+      margin: 44px 20px 10px;
+      text-align: center;
+    }
+    .logo-area svg {
+      width: 110px;
+      height: 110px;
+      filter: drop-shadow(0 0 18px rgba(200,160,50,0.7));
+      animation: pulseLogo 2.5s ease-in-out infinite;
+    }
+    @keyframes pulseLogo {
+      0%,100% { filter: drop-shadow(0 0 12px rgba(200,160,50,0.5)); }
+      50%      { filter: drop-shadow(0 0 28px rgba(200,160,50,1)); }
+    }
+    .team-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 5px;
+      margin-top: 14px;
+      text-shadow: 0 0 20px rgba(200,160,50,0.6);
+    }
+    .team-sub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(11px, 1.6vw, 13px);
+      color: var(--muted);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    .divider {
+      width: min(700px, 90%);
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 28px auto;
+    }
+
+    /* ── CARD ── */
+    .card {
+      width: min(840px, 93%);
+      background: var(--card);
+      border: 2px solid var(--gold);
+      border-radius: 4px;
+      padding: clamp(24px, 5vw, 52px) clamp(20px, 5vw, 56px);
+      box-shadow: 0 0 60px rgba(180,0,0,0.2), inset 0 0 40px rgba(0,0,0,0.5);
+    }
+
+    .seized-heading {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(26px, 5vw, 48px);
+      font-weight: 700;
+      color: var(--red);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      text-align: center;
+      text-shadow: 0 0 24px rgba(212,0,0,0.7);
+      margin-bottom: 6px;
+      animation: flicker 5s infinite;
+    }
+    @keyframes flicker {
+      0%,94%,100% { opacity: 1; }
+      95%  { opacity: 0.5; }
+      97%  { opacity: 1; }
+      99%  { opacity: 0.3; }
+    }
+    .seized-sub {
+      text-align: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(12px, 2vw, 15px);
+      color: var(--gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .body-text {
+      font-size: clamp(14px, 2vw, 16px);
+      line-height: 1.9;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+    .body-text strong { color: #e8c060; }
+    .body-text em { color: #aaa; font-style: normal; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; }
+
+    /* section label */
+    .section-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(11px, 1.6vw, 13px);
+      color: var(--gold);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #2a2a2a;
+      padding-bottom: 6px;
+      margin: 30px 0 16px;
+    }
+
+    /* vulnerability list */
+    .vuln-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px;
+      border-left: 3px solid var(--red);
+      padding-left: 20px;
+    }
+    .vuln-list li {
+      font-size: clamp(13px, 1.8vw, 15px);
+      color: #ccc;
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+    .vuln-list li::before {
+      content: "⚠";
+      color: var(--red);
+      margin-right: 10px;
+      font-size: 13px;
+    }
+    .vuln-list .tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      color: var(--red);
+      background: rgba(212,0,0,0.1);
+      border: 1px solid rgba(212,0,0,0.3);
+      padding: 1px 7px;
+      border-radius: 2px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    /* info table */
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 28px;
+      font-size: clamp(12px, 1.8vw, 14px);
+    }
+    .info-table tr { border-bottom: 1px solid #1e1e1e; }
+    .info-table tr:last-child { border-bottom: none; }
+    .info-table td { padding: 11px 8px; color: #bbb; }
+    .info-table td:first-child {
+      font-family: 'Oswald', sans-serif;
+      color: var(--gold);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      width: 36%;
+      font-size: clamp(11px, 1.5vw, 12px);
+    }
+
+    /* terminal block */
+    .terminal {
+      background: #050505;
+      border: 1px solid #1e1e1e;
+      border-left: 3px solid var(--gold);
+      border-radius: 3px;
+      padding: 18px 20px;
+      margin: 20px 0 28px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(11px, 1.6vw, 13px);
+      color: #4af;
+      line-height: 2;
+    }
+    .terminal .prompt { color: var(--gold); user-select: none; }
+    .terminal .ok   { color: #4f4; }
+    .terminal .fail { color: #f44; }
+    .terminal .warn { color: #fa0; }
+
+    /* score bar */
+    .score-section { margin: 10px 0 28px; }
+    .score-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .score-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      width: 180px;
+      flex-shrink: 0;
+    }
+    .score-bar-wrap {
+      flex: 1;
+      height: 8px;
+      background: #1a1a1a;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .score-bar {
+      height: 100%;
+      border-radius: 4px;
+      animation: growBar 1.5s ease forwards;
+    }
+    @keyframes growBar { from { width: 0; } }
+    .score-val {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      width: 36px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* stamp */
+    .stamp-wrap { text-align: center; margin: 36px 0 6px; }
+    .stamp {
+      display: inline-block;
+      border: 4px solid var(--gold);
+      border-radius: 6px;
+      padding: 16px 36px;
+      transform: rotate(-3deg);
+      animation: stampGlow 2.5s ease-in-out infinite;
+    }
+    @keyframes stampGlow {
+      0%,100% { box-shadow: 0 0 18px rgba(200,160,50,0.3); }
+      50%      { box-shadow: 0 0 40px rgba(200,160,50,0.75); }
+    }
+    .stamp p:first-child {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(9px, 1.4vw, 11px);
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .stamp p:last-child {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(20px, 4vw, 32px);
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 3px;
+      text-shadow: 0 0 16px rgba(200,160,50,0.9);
+    }
+
+    /* bottom bar */
+    .bottom-bar {
+      width: 100%;
+      background: #0d0d0d;
+      border-top: 4px solid var(--red);
+      padding: 16px 20px;
+      text-align: center;
+      margin-top: 48px;
+    }
+    .bottom-bar p {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(10px, 1.6vw, 12px);
+      letter-spacing: 1.5px;
+      color: #555;
+      text-transform: uppercase;
+    }
+    .bottom-bar span { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BANNER -->
+  <div class="top-banner">
+    <p>⚠ &nbsp; THIS WEBSITE HAS BEEN SEIZED &nbsp; ⚠</p>
+  </div>
+
+  <!-- LOGO -->
+  <div class="logo-area">
+    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer ring -->
+      <circle cx="60" cy="60" r="57" fill="#080800" stroke="#c8a032" stroke-width="3"/>
+      <!-- Dashed inner ring -->
+      <circle cx="60" cy="60" r="49" fill="none" stroke="#c8a032" stroke-width="1.2" stroke-dasharray="5 3"/>
+
+      <!-- Outer glow dots (pre-computed from PHP loop: i*22.5-90 degrees, r=3 if i%4==0 else 1.8) -->
+      <circle cx="60" cy="7" r="3" fill="#c8a032"/>
+      <circle cx="80.28" cy="11.03" r="1.8" fill="#c8a032"/>
+      <circle cx="97.48" cy="22.52" r="1.8" fill="#c8a032"/>
+      <circle cx="108.97" cy="39.72" r="1.8" fill="#c8a032"/>
+      <circle cx="113" cy="60" r="3" fill="#c8a032"/>
+      <circle cx="108.97" cy="80.28" r="1.8" fill="#c8a032"/>
+      <circle cx="97.48" cy="97.48" r="1.8" fill="#c8a032"/>
+      <circle cx="80.28" cy="108.97" r="1.8" fill="#c8a032"/>
+      <circle cx="60" cy="113" r="3" fill="#c8a032"/>
+      <circle cx="39.72" cy="108.97" r="1.8" fill="#c8a032"/>
+      <circle cx="22.52" cy="97.48" r="1.8" fill="#c8a032"/>
+      <circle cx="11.03" cy="80.28" r="1.8" fill="#c8a032"/>
+      <circle cx="7" cy="60" r="3" fill="#c8a032"/>
+      <circle cx="11.03" cy="39.72" r="1.8" fill="#c8a032"/>
+      <circle cx="22.52" cy="22.52" r="1.8" fill="#c8a032"/>
+      <circle cx="39.72" cy="11.03" r="1.8" fill="#c8a032"/>
+
+      <!-- Illuminati triangle -->
+      <polygon points="60,18 100,82 20,82"
+        fill="none" stroke="#c8a032" stroke-width="2.5" stroke-linejoin="round"/>
+      <polygon points="60,22 97,80 23,80" fill="#c8a03208"/>
+
+      <!-- Horizontal line inside triangle -->
+      <line x1="27" y1="72" x2="93" y2="72" stroke="#c8a032" stroke-width="1" opacity="0.4"/>
+
+      <!-- Eye white -->
+      <ellipse cx="60" cy="55" rx="14" ry="9" fill="#1a1500" stroke="#c8a032" stroke-width="1.5"/>
+      <!-- Iris -->
+      <circle cx="60" cy="55" r="6" fill="#c8a032" opacity="0.15"/>
+      <!-- Pupil -->
+      <circle cx="60" cy="55" r="4.5" fill="#d40000"/>
+      <!-- Pupil shine -->
+      <circle cx="62" cy="53" r="1.2" fill="#ff8080" opacity="0.8"/>
+      <!-- Eye lashes top -->
+      <path d="M46,55 Q53,44 60,46 Q67,44 74,55" fill="none" stroke="#c8a032" stroke-width="1.3"/>
+      <!-- Eye lashes bottom -->
+      <path d="M46,55 Q53,66 60,64 Q67,66 74,55" fill="none" stroke="#c8a032" stroke-width="1.3"/>
+
+      <!-- Rays from eye (pre-computed from PHP $rays array) -->
+      <line x1="60" y1="46" x2="60" y2="22" stroke="#c8a032" stroke-width="0.8" opacity="0.35" stroke-dasharray="3 2"/>
+      <line x1="74" y1="55" x2="94" y2="55" stroke="#c8a032" stroke-width="0.8" opacity="0.35" stroke-dasharray="3 2"/>
+      <line x1="46" y1="55" x2="26" y2="55" stroke="#c8a032" stroke-width="0.8" opacity="0.35" stroke-dasharray="3 2"/>
+      <line x1="70" y1="48" x2="85" y2="33" stroke="#c8a032" stroke-width="0.8" opacity="0.35" stroke-dasharray="3 2"/>
+      <line x1="50" y1="48" x2="35" y2="33" stroke="#c8a032" stroke-width="0.8" opacity="0.35" stroke-dasharray="3 2"/>
+
+      <!-- BYPASS-X text at bottom inside -->
+      <text x="60" y="106" font-family="Oswald,sans-serif" font-size="9" font-weight="700"
+        fill="#c8a032" text-anchor="middle" letter-spacing="3">BYPASS-X</text>
+    </svg>
+    <div class="team-name">BYPASS-X</div>
+    <div class="team-sub">Cyber Security Enforcement Team</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- MAIN CARD -->
+  <div class="card">
+
+    <div class="seized-heading">This Website Has Been Seized</div>
+    <div class="seized-sub">Domain Permanently Suspended &amp; Taken Down by BYPASS-X TEAM</div>
+
+    <!-- INTRO -->
+    <p class="body-text">
+      This website has been <strong>detected, audited, and permanently suspended</strong> by <strong>BYPASS-X TEAM</strong> — an independent cyber security enforcement group dedicated to identifying and neutralizing vulnerable, unsafe, and irresponsible online infrastructure. After an extensive automated and manual penetration testing operation conducted over multiple days, this domain was flagged as a <strong>critically vulnerable and actively dangerous</strong> web environment.
+    </p>
+
+    <p class="body-text">
+      Our team discovered an alarming number of unpatched vulnerabilities, exposed sensitive data, misconfigured servers, and dangerously outdated software running on this system. The owner of this website showed <strong>no regard for basic security practices</strong>, putting every single visitor who has ever accessed this site at serious risk. After exhausting all passive monitoring options, BYPASS-X TEAM made the decision to <strong>intervene and take this domain offline</strong> to protect the public from further exposure.
+    </p>
+
+    <!-- TERMINAL BLOCK -->
+    <div class="section-label">// Audit Log — Penetration Test Summary</div>
+    <div class="terminal">
+      <div><span class="prompt">[BYPASS-X]&gt; </span>initiating_full_scan --target=<span id="ip-terminal">0.0.0.0</span> --deep=true</div>
+      <div><span class="prompt">[BYPASS-X]&gt; </span><span class="ok">scan complete. 247 endpoints analyzed.</span></div>
+      <div><span class="prompt">[BYPASS-X]&gt; </span><span class="fail">CRITICAL: SQL injection vector detected on /api/user</span></div>
+      <div><span class="prompt">[BYPASS-X]&gt; </span><span class="fail">CRITICAL: Unauthenticated admin panel accessible at /admin</span></div>
+      <div><span class="prompt">[BYPASS-X]&gt; </span><span class="warn">WARNING: Exposed .env file containing database credentials</span></div>
+      <div><span class="prompt">[BYPASS-X]&gt; </span><span class="warn">WARNING: Server running PHP 5.6 (EOL since 2018)</span></div>
+      <div><span class="prompt">[BYPASS-X]&gt; </span><span class="fail">CRITICAL: Cross-Site Scripting (XSS) — 14 injection points found</span></div>
+      <div><span class="prompt">[BYPASS-X]&gt; </span><span class="fail">CRITICAL: Directory traversal allows full filesystem read access</span></div>
+      <div><span class="prompt">[BYPASS-X]&gt; </span><span class="ok">generating_report... done.</span></div>
+      <div><span class="prompt">[BYPASS-X]&gt; </span><span class="fail">verdict: UNSAFE — initiating domain suspension protocol.</span></div>
+    </div>
+
+    <!-- VULNERABILITIES -->
+    <div class="section-label">// Security Vulnerabilities Identified</div>
+    <p class="body-text">The following critical and high-severity vulnerabilities were confirmed during our penetration test. Each of these issues represents a direct threat to the security and privacy of this website's users:</p>
+
+    <ul class="vuln-list">
+      <li>
+        <strong>SQL Injection (SQLi)</strong> — Multiple endpoints on this server accepted raw, unsanitized user input directly into database queries. This allows any attacker to extract, modify, or destroy the entire database with trivial effort.
+        <span class="tag">CRITICAL</span>
+      </li>
+      <li>
+        <strong>Cross-Site Scripting (XSS)</strong> — 14 confirmed injection points were found across the site's forms and URL parameters. Attackers can inject malicious scripts that run in the browsers of every visitor, stealing session cookies and credentials.
+        <span class="tag">CRITICAL</span>
+      </li>
+      <li>
+        <strong>Exposed Admin Panel</strong> — The administrative dashboard was publicly accessible without any authentication gate. Anyone with a browser could have accessed full site controls, user data, and backend configuration.
+        <span class="tag">CRITICAL</span>
+      </li>
+      <li>
+        <strong>Exposed .env / Configuration Files</strong> — Sensitive configuration files including database credentials, API keys, and secret tokens were directly downloadable from the web root with no access restrictions whatsoever.
+        <span class="tag">CRITICAL</span>
+      </li>
+      <li>
+        <strong>Directory Traversal Vulnerability</strong> — Our team was able to navigate the server's directory structure and read arbitrary files outside the web root, including system configuration files.
+        <span class="tag">HIGH</span>
+      </li>
+      <li>
+        <strong>Severely Outdated Software Stack</strong> — The server was running PHP 5.6, Apache 2.2, and several CMS plugins that reached end-of-life years ago. No security patches have been applied for an extended period. This system is trivially exploitable using publicly documented exploits.
+        <span class="tag">HIGH</span>
+      </li>
+      <li>
+        <strong>Broken Authentication &amp; Session Management</strong> — User session tokens were weak, predictable, and transmitted over unencrypted connections. Session fixation and hijacking attacks were trivially reproducible.
+        <span class="tag">HIGH</span>
+      </li>
+      <li>
+        <strong>No HTTPS / Unencrypted Data Transmission</strong> — All traffic between users and this server was transmitted in plain text with no TLS/SSL encryption, exposing login credentials, personal data, and private communications to any network observer.
+        <span class="tag">HIGH</span>
+      </li>
+      <li>
+        <strong>Server-Side Request Forgery (SSRF)</strong> — An attacker could force this server to make requests to internal infrastructure, potentially exposing internal services and cloud metadata endpoints.
+        <span class="tag">HIGH</span>
+      </li>
+      <li>
+        <strong>No Rate Limiting or Brute-Force Protection</strong> — Login endpoints had no rate limiting, CAPTCHA, or account lockout mechanisms. Automated password brute-force attacks would succeed undetected and unhindered.
+        <span class="tag">MEDIUM</span>
+      </li>
+      <li>
+        <strong>Unrestricted File Upload</strong> — File upload functionality accepted any file type without validation, making it possible to upload and execute malicious server-side scripts (web shells).
+        <span class="tag">HIGH</span>
+      </li>
+      <li>
+        <strong>Verbose Error Messages Leaking System Information</strong> — Unhandled exceptions exposed full stack traces, file paths, database structure, and software versions directly to the browser — a gift to any attacker doing reconnaissance.
+        <span class="tag">MEDIUM</span>
+      </li>
+    </ul>
+
+    <!-- SECURITY SCORE -->
+    <div class="section-label">// Security Score Assessment</div>
+    <div class="score-section">
+      <div class="score-row">
+        <div class="score-label">Firewall Protection</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:8%;background:#d40000;"></div></div>
+        <div class="score-val" style="color:#d40000;">8%</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">Input Validation</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:4%;background:#d40000;"></div></div>
+        <div class="score-val" style="color:#d40000;">4%</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">Authentication Strength</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:12%;background:#d40000;"></div></div>
+        <div class="score-val" style="color:#d40000;">12%</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">Encryption (HTTPS)</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:0%;background:#d40000;"></div></div>
+        <div class="score-val" style="color:#d40000;">0%</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">Patch Management</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:6%;background:#d40000;"></div></div>
+        <div class="score-val" style="color:#d40000;">6%</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">Access Control</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:5%;background:#d40000;"></div></div>
+        <div class="score-val" style="color:#d40000;">5%</div>
+      </div>
+      <div class="score-row">
+        <div class="score-label">Overall Security Score</div>
+        <div class="score-bar-wrap"><div class="score-bar" style="width:6%;background:#b80000;"></div></div>
+        <div class="score-val" style="color:#b80000;">6%</div>
+      </div>
+    </div>
+
+    <!-- INFO TABLE -->
+    <div class="section-label">// Suspension Details</div>
+    <table class="info-table">
+      <tr><td>Date of Suspension</td><td id="seized-date">—</td></tr>
+      <tr><td>Time of Suspension</td><td id="seized-time">—</td></tr>
+      <tr><td>Report ID</td><td id="case-number">—</td></tr>
+      <tr><td>Executed By</td><td>BYPASS-X TEAM — Cyber Security Enforcement</td></tr>
+      <tr><td>Audit Duration</td><td>72 Hours — Full Penetration Test</td></tr>
+      <tr><td>Vulnerabilities Found</td><td style="color:#d40000;font-weight:bold;">12 Critical &nbsp;/&nbsp; 8 High &nbsp;/&nbsp; 5 Medium</td></tr>
+      <tr><td>Domain Status</td><td style="color:#d40000;font-weight:bold;">PERMANENTLY SUSPENDED</td></tr>
+      <tr><td>Your IP Address</td><td><span id="ip-table">0.0.0.0</span> <span style="color:#555;font-size:12px;">(Logged)</span></td></tr>
+    </table>
+
+    <!-- MESSAGE TO OWNER -->
+    <div class="section-label">// Message to the Website Owner</div>
+    <p class="body-text">
+      If you are the owner of this website, know that this suspension was not taken lightly. <strong>BYPASS-X TEAM attempted to contact this domain's registered owner multiple times</strong> through available channels before proceeding with this action. No response was received.
+    </p>
+    <p class="body-text">
+      The state of security on this server is not the result of bad luck — it is the result of <strong>negligence, inaction, and a complete disregard for the safety of your users</strong>. Every person who ever logged into your site, submitted a form, or made a transaction was exposed to risk that you had a responsibility to prevent.
+    </p>
+    <p class="body-text">
+      If you wish to dispute this suspension or discuss remediation steps, you may reach our team at <strong style="color:var(--gold);">security@bypass-x.team</strong> and quote your Report ID: <strong style="color:var(--gold);" id="case-number-msg">—</strong>. Any appeal must be accompanied by a documented remediation plan addressing all identified vulnerabilities. Until all critical issues are verified as resolved, <strong>this domain will remain suspended</strong>.
+    </p>
+
+    <!-- STAMP -->
+    <div class="stamp-wrap">
+      <div class="stamp">
+        <p>Suspended By</p>
+        <p>BYPASS-X</p>
+      </div>
+    </div>
+
+  </div><!-- /card -->
+
+  <!-- BOTTOM BAR -->
+  <div class="bottom-bar">
+    <p>
+      &copy; <span id="current-year"></span> &nbsp;|&nbsp;
+      <span>BYPASS-X TEAM — Cyber Security Enforcement</span> &nbsp;|&nbsp;
+      Report ID: <span id="case-number-footer">—</span>
+    </p>
+  </div>
+
+  <script>
+    // ── Generate values that PHP previously generated server-side ──
+
+    // Date & Time (UTC)
+    const now = new Date();
+    const months = ["January","February","March","April","May","June",
+                    "July","August","September","October","November","December"];
+    const seized_date = months[now.getUTCMonth()] + " " +
+                        String(now.getUTCDate()).padStart(2,"0") + ", " +
+                        now.getUTCFullYear();
+    const seized_time = String(now.getUTCHours()).padStart(2,"0") + ":" +
+                        String(now.getUTCMinutes()).padStart(2,"0") + ":" +
+                        String(now.getUTCSeconds()).padStart(2,"0") + " UTC";
+
+    // Case number (BPX- + 10 random uppercase hex chars)
+    const case_number = "BPX-" + Array.from(crypto.getRandomValues(new Uint8Array(5)))
+                          .map(b => b.toString(16).padStart(2,"0"))
+                          .join("").toUpperCase();
+
+    // Inject static values
+    document.getElementById("seized-date").textContent      = seized_date;
+    document.getElementById("seized-time").textContent      = seized_time;
+    document.getElementById("case-number").textContent      = case_number;
+    document.getElementById("case-number-msg").textContent  = case_number;
+    document.getElementById("case-number-footer").textContent = case_number;
+    document.getElementById("current-year").textContent     = now.getUTCFullYear();
+
+    // Fetch visitor IP from public API
+    fetch("https://api.ipify.org?format=json")
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById("ip-terminal").textContent = data.ip;
+        document.getElementById("ip-table").textContent    = data.ip;
+      })
+      .catch(() => {
+        // leave as 0.0.0.0 on failure
+      });
+  </script>
+
+</body>
+</html>
